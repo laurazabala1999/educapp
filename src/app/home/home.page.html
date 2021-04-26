@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>BIENVENID@ {{user}}</ion-title>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="profesor">
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="crear()">
+          <img src="assets/icon/crear.png" />
+          <ion-card-header>
+            <ion-card-title>CREAR PRUEBA</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Crear una prueba.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="anadir()">
+          <img src="assets/icon/anadir.png" />
+          <ion-card-header>
+            <ion-card-title>GESTIONAR PRUEBAS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Gestionar las pruebas creadas.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="consultar()">
+          <img src="assets/icon/resultados.png" />
+          <ion-card-header>
+            <ion-card-title>CONSULTAR RESULTADOS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultar resultados de los estudiantes.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="analisis()">
+          <img src="assets/icon/analisis.png" />
+          <ion-card-header>
+            <ion-card-title>ANÁLISIS DE RIESGOS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultar situaciones de riesgo.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="alumno">
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="tareas()">
+          <ion-badge color="warning" class="alert">{{numTareasPendientes}}</ion-badge>
+          <img src="assets/icon/tareas.png" />
+          <ion-card-header>
+            <ion-card-title>MIS TAREAS PENDIENTES</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultar tus tareas pendientes.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="realizadas()">
+          <img src="assets/icon/realizadas.png" />
+          <ion-card-header>
+            <ion-card-title>MIS TAREAS ENTREGADAS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultar el resultado de tus tareas.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="avisos()">
+          <ion-badge color="warning" class="alert">{{numAvisosPendientes}}</ion-badge>
+          <img src="assets/icon/aviso.png" />
+          <ion-card-header>
+            <ion-card-title>AVISOS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Mensajes importantes para ti.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col *ngIf="ejerciciosRefuerzo">
+        <ion-card (click)="refuerzo()">
+          <img src="assets/icon/libro.jpg" />
+          <ion-card-header>
+            <ion-card-title>EJERCICIOS REPASO</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+              Tienes ejercicios de repaso pendientes. 
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

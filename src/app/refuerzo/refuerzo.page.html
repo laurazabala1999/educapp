@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>EJERCICIOS DE REPASO</ion-title>
+      </ion-col>
+      <ion-col  size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="!start">
+  <ion-item>
+    <ion-label style="text-align:center;">A continuación se le mostrarán ejercicios personalizados, basados en sus pruebas anteriores. ¿Estás preparado?</ion-label>
+  </ion-item>
+  <ion-button expand="full" (click)="empezar()">EMPEZAR</ion-button>
+  <ion-button expand="full" color="warning" (click)="volver()">VOLVER</ion-button>
+
+</ion-content>
+
+<ion-content *ngIf="start">
+  <ion-item>
+    <ion-label position="floating">Pregunta número {{numero}}</ion-label>
+    <ion-textarea [(ngModel)]="pregunta" disabled="true"></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf="pruebaCompletar">
+    <ion-label position="stacked">Responda aquí</ion-label>
+    <ion-input [(ngModel)]="respuesta" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
+  </ion-item>
+
+  <ion-list *ngIf="pruebaTest">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item color="{{claseSeleccionadaA}}" (click)="seleccionarOopcion('A')">
+            <ion-label>A) {{opcionA}}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+
+          <ion-item color="{{claseSeleccionadaB}}" (click)="seleccionarOopcion('B')">
+            <ion-label>B) {{opcionB}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="{{claseSeleccionadaC}}" (click)="seleccionarOopcion('C')">
+            <ion-label>C) {{opcionC}}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+
+          <ion-item color="{{claseSeleccionadaD}}" (click)="seleccionarOopcion('D')">
+            <ion-label>D) {{opcionD}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </ion-list>
+
+  <ion-button expand="full" (click)="continuar()">CONTINUAR</ion-button>
+
+</ion-content>

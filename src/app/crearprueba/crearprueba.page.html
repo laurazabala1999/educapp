@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>CREAR PRUEBA</ion-title>
+      </ion-col>
+      <ion-col  size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="!crear">
+    <ion-item>
+      <ion-label position="stacked">Nombre de la prueba</ion-label>
+      <ion-input [(ngModel)]="nombre" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo de Prueba</ion-label>
+      <ion-select [(ngModel)]="tipo">
+        <ion-select-option value="TEST">Test</ion-select-option>
+        <ion-select-option value="COMPLETAR">Completar</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Asignatura</ion-label>
+      <ion-select [(ngModel)]="asignatura">
+        <ion-select-option value="MATEMÁTICAS">Matemáticas</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Temario</ion-label>
+      <ion-select [(ngModel)]="temario"> 
+        <ion-select-option *ngFor="let item of temas" [value]="item">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="estado"> 
+        <ion-select-option *ngFor="let item of estados" [value]="item">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Asignar a Grupos</ion-label>
+      <ion-select [(ngModel)]="grupo" multiple>
+        <ion-select-option value="6ºA">6ºA Primaria </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="full" color="success" (click)="empezar()">EMPEZAR</ion-button>
+  </ion-grid>
+
+<ion-grid *ngIf="crear">
+  <ion-col *ngIf="tipo == 'TEST'">
+    <ion-item>
+      <ion-label position="floating">Pregunta número {{numero}}</ion-label>
+      <ion-textarea [(ngModel)]="pregunta" onkeyup="this.value = this.value.toUpperCase();"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Opción A</ion-label>
+      <ion-input [(ngModel)]="opcionA"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Opción B</ion-label>
+      <ion-input [(ngModel)]="opcionB"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Opción C</ion-label>
+      <ion-input [(ngModel)]="opcionC"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Opción D</ion-label>
+      <ion-input [(ngModel)]="opcionD"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Selecciona la opción correcta</ion-label>
+      <ion-select [(ngModel)]="correcta">
+        <ion-select-option value="A">Opción A</ion-select-option>
+        <ion-select-option value="B">Opción B</ion-select-option>
+        <ion-select-option value="C">Opción C</ion-select-option>
+        <ion-select-option value="D">Opción D</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+  <ion-col *ngIf="tipo == 'COMPLETAR'">
+    <ion-item>
+      <ion-label position="floating">Pregunta número {{numero}}</ion-label>
+      <ion-textarea [(ngModel)]="pregunta" onkeyup="this.value = this.value.toUpperCase();"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Indica la respuesta correcta</ion-label>
+      <ion-input [(ngModel)]="respuesta" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-button expand="full" (click)="siguiente()">SIGUIENTE PREGUNTA</ion-button>
+  <ion-button expand="full" color="success" (click)="finalizar()">GUARDAR Y FINALIZAR</ion-button>
+
+</ion-grid>
+
+</ion-content>

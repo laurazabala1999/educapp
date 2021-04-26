@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>GESTIONAR PRUEBAS</ion-title>
+      </ion-col>
+      <ion-col  size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ag-grid-angular style="width: 100%; height: 50%;" class="ag-theme-balham" [rowData]="rowData"
+    [columnDefs]="columnDefs" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
+    (firstDataRendered)="onFirstDataRendered($event)">
+  </ag-grid-angular>
+
+  <ion-item *ngIf="show">
+    <ion-label>Grupos Asignados a la Tarea "{{tarea}}"</ion-label>
+    <ion-select [(ngModel)]="grupo" multiple>
+      <ion-select-option value="6ºA">6ºA Primaria </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button *ngIf="show" expand="full" (click)="asignar()">ASIGNAR</ion-button>
+  <ion-button *ngIf="show && abierto" color="success" expand="full" (click)="open()">ABRIR</ion-button>
+  <ion-button *ngIf="show && cerrado" color="medium" expand="full" (click)="close()">CERRAR</ion-button>
+  <ion-button *ngIf="show && finalizado" color="warning" expand="full" (click)="end()">FINALIZAR TAREA</ion-button>
+  <ion-button *ngIf="show" color="danger" expand="full" (click)="delete()">ELIMINAR TAREA</ion-button>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>AVISOS</ion-title>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-list *ngIf="lista">
+    <ion-list-header *ngIf="pruebaStorageMsg && pruebaStorageMsg.length">
+      Mensajes Recientes
+    </ion-list-header>
+    <ion-list-header *ngIf="!pruebaStorageMsg.length">
+      No tienes ningún mensaje
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let item of pruebaStorageMsg">
+      <ion-item>
+        <div [class]="item.leido.toString()">
+          <ion-avatar slot="start">
+            <img [src]="item.img">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{item.profesor}}</h2>
+            <h3>{{item.asignatura}} // {{item.titulo}}</h3>
+            <p>{{item.msg}}</p>
+          </ion-label>
+        </div>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="eliminar(item)">ELIMINAR</ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="start">
+        <ion-item-option (click)="abrir(item)">ABRIR</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-card *ngIf="detalle">
+    <img style="width: 81px;" [src]="modalData.img" />
+    <ion-card-header>
+      <ion-card-title>{{modalData.profesor}}</ion-card-title>
+      <ion-card-subtitle>{{modalData.asignatura}} // {{modalData.titulo}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{modalData.msg}}
+    </ion-card-content>
+    <ion-button expand="full" (click)="cerrar()">CERRAR</ion-button>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>CONSULTAR RESULTADOS</ion-title>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-row *ngIf=!mensajeShow>
+  <ion-col>
+    <ion-button color="success" expand="full" (click)="showTabla()">VER TABLA</ion-button>
+  </ion-col>
+  <ion-col>
+    <ion-button expand="full" (click)="showGrafico()">VER GRÁFICO</ion-button>
+  </ion-col>
+</ion-row>
+
+
+<ag-grid-angular *ngIf="!mensajeShow && sTabla" style="width: 100%; height: 100%;" class="ag-theme-balham"
+  [rowData]="rowData" [columnDefs]="columnDefs" [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)">
+</ag-grid-angular>
+
+
+<ion-grid *ngIf="!mensajeShow && sTabla && seleccion">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating" style="font-weight: bold;">Nombre de la prueba</ion-label>
+        <ion-textarea [(ngModel)]="lineaSeleccionada.titulo" disabled="true"></ion-textarea>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating" style="font-weight: bold;">Estudiante</ion-label>
+        <ion-textarea [(ngModel)]="lineaSeleccionada.alumno" disabled="true"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating" style="font-weight: bold;">Calificación (Sobre 10 puntos)</ion-label>
+        <ion-textarea [(ngModel)]="lineaSeleccionada.nota" disabled="true"></ion-textarea>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating" style="font-weight: bold;">Tiempo (Segundos)</ion-label>
+        <ion-textarea [(ngModel)]="lineaSeleccionada.tiempo" disabled="true"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item *ngIf="opinion">
+        <ion-label position="floating" style="font-weight: bold;">Opinión del estudiante sobre la prueba</ion-label>
+        <ion-textarea [(ngModel)]="opinion" disabled="true"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+<div *ngIf="show && sTabla">
+  <ion-button color="success" expand="full" (click)="felicitar()">FELICITAR</ion-button>
+  <ion-button color="warning" expand="full" (click)="mensaje()">ENVIAR MENSAJE PERSONAL</ion-button>
+</div>
+<!-- <div *ngIf="!show && sTabla && seleccion">
+  <ion-item>
+    <ion-textarea disabled="true">  Ya has enviado un mensaje a este estudiante en referencia a la prueba.
+    </ion-textarea>
+  </ion-item>
+</div> -->
+
+<ion-content *ngIf="mensajeShow">
+  <ion-label position="floating">Redacte aquí el mensaje que desea enviar al estudiante</ion-label>
+  <ion-textarea [(ngModel)]="mensajeEnviar"></ion-textarea>
+  <ion-button *ngIf="show" color="success" expand="full" (click)="enviar()">ENVIAR</ion-button>
+  <ion-button *ngIf="show" expand="full" (click)="cerrar()">VOLVER</ion-button>
+</ion-content>
+
+<ion-content>
+
+  <ion-row *ngIf=sGrafico>
+    <ion-col>
+      <ion-item>
+        <ion-label>Estudiantes</ion-label>
+        <ion-select [(ngModel)]="alumnoS" (ionChange)="changeAlumno($event)">
+          <ion-select-option *ngFor="let item of alumnosG" [value]="item">{{item}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button [disabled]="!bAlumno" expand="full" (click)="alumno()">Ver gráfico del estudiante y sus pruebas
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Grupos</ion-label>
+        <ion-select [(ngModel)]="grupoS" (ionChange)="changeGrupo($event)">
+          <ion-select-option *ngFor="let item of gruposG" [value]="item">{{item}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button [disabled]="!bGrupo" expand="full" color="success" (click)="grupo()">Ver resultado del grupo y sus
+        pruebas</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Pruebas</ion-label>
+        <ion-select [(ngModel)]="pruebaS" (ionChange)="changePrueba($event)">
+          <ion-select-option *ngFor="let item of pruebasG" [value]="item">{{item}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button [disabled]="!bPrueba" expand="full" color="warning" (click)="prueba()">Ver gráfico de la prueba y sus
+        participantes
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+  <ag-charts-angular *ngIf="sGrafico && sAlumno" style="width: 100%; height: 40%;" [options]="options">
+  </ag-charts-angular>
+
+  <ag-charts-angular *ngIf="sGrafico && sGrupo" style="width: 100%; height: 40%;" [options]="options">
+  </ag-charts-angular>
+
+  <ag-charts-angular *ngIf="sGrafico && sPrueba" style="width: 100%; height: 40%;" [options]="options">
+  </ag-charts-angular>
+
+</ion-content>

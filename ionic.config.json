@@ -1,0 +1,7 @@
+{
+  "name": "EducApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

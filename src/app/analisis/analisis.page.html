@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="10">
+        <ion-title>ANALISIS DE RIESGOS</ion-title>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="primary" class="home" (click)="salir()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-button *ngIf="lista" expand="full" color="success" (click)="analizar()">ACTUALIZAR ESTUDIO</ion-button>
+
+  <ion-list *ngIf="lista">
+    <ion-list-header *ngIf="riesgos && riesgos.length">
+      Riesgos detectados
+    </ion-list-header>
+    <ion-list-header *ngIf="!riesgos.length">
+      No se ha detectado ningun riesgo
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let item of riesgos">
+      <ion-item>
+        <ion-label>
+          <h2>Estudiante: {{item.alumno}}</h2>
+          <h3>Asingatura: Matemáticas</h3>
+          <p>{{item.mensaje}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="abrir(item)">ABRIR</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-card *ngIf="detalle">
+    <ion-card-header>
+      <ion-card-title>Estudiante: {{modalData.alumno}}</ion-card-title>
+      <ion-card-subtitle>Asingatura: Matemáticas</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{modalData.mensaje}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+  <ag-grid-angular *ngIf="detalle" style="width: 100%; height: 30%;" class="ag-theme-balham" [rowData]="rowData"
+    [columnDefs]="columnDefs" [rowSelection]="rowSelection" (firstDataRendered)="onFirstDataRendered($event)">
+  </ag-grid-angular>
+  <ion-button *ngIf="detalle" expand="full" (click)="cerrar()">CERRAR</ion-button>
+  <ion-button *ngIf="detalle" expand="full" color="success" (click)="normalizar(modalData)">IGNORAR RIESGO</ion-button>
