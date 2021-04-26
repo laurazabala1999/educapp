@@ -199,6 +199,7 @@ export class TareaspendientesPage implements OnInit {
   }
 
   continuar() {
+    this.changeDetectorRef.detectChanges();
 
     this.cronometro("restart");
 
@@ -207,6 +208,8 @@ export class TareaspendientesPage implements OnInit {
       tiempo: this.cronoResta,
       respuesta: this.respuesta
     }
+
+    this.respuesta = null;
 
     this.examen.preguntas.push(obj);
     this.examen.tiempoTotal = this.examen.tiempoTotal + this.cronoResta;
