@@ -11,3 +11,20 @@ background-color: lightsalmon;
 .yellow{
   background-color: yellow;
 }
+
+
+/* Movil*/  
+@media only screen and (max-width: 500px) {  
+  .movil{
+      display: block;
+  }
+  
+} 
+
+/* Ordenador*/  
+@media only screen and (min-width: 500px) {  
+  .movil{
+      display: none;
+  }
+
+}  

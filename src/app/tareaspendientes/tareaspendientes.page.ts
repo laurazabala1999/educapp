@@ -226,6 +226,7 @@ export class TareaspendientesPage implements OnInit {
       this.showTabla = false;
 
       this.cronometro("end");
+      this.changeDetectorRef.detectChanges();
 
     }
     else {
@@ -235,7 +236,7 @@ export class TareaspendientesPage implements OnInit {
       this.claseSeleccionadaD = "";
 
       this.pregunta = this.pruebaSelect.preguntas[this.preguntaActual].pregunta;
-      this.respuesta = "";
+      this.respuesta = null;
       this.respuestaCorrecta = this.pruebaSelect.preguntas[this.preguntaActual].correcta;
       this.opcionA = this.pruebaSelect.preguntas[this.preguntaActual].respuestas ? this.pruebaSelect.preguntas[this.preguntaActual].respuestas[0].texto : "";
       this.opcionB = this.pruebaSelect.preguntas[this.preguntaActual].respuestas ? this.pruebaSelect.preguntas[this.preguntaActual].respuestas[1].texto : "";

@@ -22,9 +22,25 @@
 </ion-content>
 
 <ion-content *ngIf="showEvaluacion">
-  <ion-item>
-    <ion-label style="text-align:center;">¿Qué te ha parecido la prueba? ¿Has tenido algún problema? ¿Lo has entendido bien?</ion-label>
-  </ion-item>
+
+  <ion-row style="text-align:center;" class="movil">
+    <ion-col>
+      <ion-label>¿Qué te ha parecido la prueba?</ion-label>
+    </ion-col>
+    <ion-col>
+      <ion-label>¿Has tenido algún problema?</ion-label>
+    </ion-col>
+    <ion-col>
+      <ion-label>¿Lo has entendido bien?</ion-label>
+    </ion-col>
+  </ion-row>
+ 
+  <ion-row style="text-align:center;" class="ordenador">
+    <ion-col>
+      <ion-label>¿Qué te ha parecido la prueba? ¿Has tenido algún problema? ¿Lo has entendido bien?</ion-label>
+    </ion-col>
+  </ion-row>
+  
   <ion-item>
     <ion-textarea [(ngModel)]="opinion"></ion-textarea>
   </ion-item>
