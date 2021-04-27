@@ -24,8 +24,13 @@
 </ion-row>
 
 
-<ag-grid-angular *ngIf="!mensajeShow && sTabla" style="width: 100%; height: 100%;" class="ag-theme-balham"
+<ag-grid-angular *ngIf="!mensajeShow && sTabla" style="width: 100%; height: 100%;" class="ag-theme-balham ordenador"
   [rowData]="rowData" [columnDefs]="columnDefs" [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)">
+</ag-grid-angular>
+
+<ag-grid-angular *ngIf="!mensajeShow && sTabla" style="width: 100%; height: 100%;" class="ag-theme-balham movil"
+  [rowData]="rowData" [columnDefs]="columnDefsMobile" [rowSelection]="rowSelection"
   (selectionChanged)="onSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)">
 </ag-grid-angular>
 
@@ -70,9 +75,13 @@
 </ion-grid>
 
 
-<div *ngIf="show && sTabla">
-  <ion-button color="success" expand="full" (click)="felicitar()">FELICITAR</ion-button>
-  <ion-button color="warning" expand="full" (click)="mensaje()">ENVIAR MENSAJE PERSONAL</ion-button>
+<div>
+  <ion-item *ngIf="opinion" class="ordenador">
+    <ion-label position="floating" style="font-weight: bold;">Opinión del estudiante sobre la prueba</ion-label>
+    <ion-textarea [(ngModel)]="opinion" disabled="true"></ion-textarea>
+  </ion-item>
+  <ion-button *ngIf="show && sTabla" color="success" expand="full" (click)="felicitar()">FELICITAR</ion-button>
+  <ion-button *ngIf="show && sTabla" color="warning" expand="full" (click)="mensaje()">ENVIAR MENSAJE PERSONAL</ion-button>
 </div>
 <!-- <div *ngIf="!show && sTabla && seleccion">
   <ion-item>

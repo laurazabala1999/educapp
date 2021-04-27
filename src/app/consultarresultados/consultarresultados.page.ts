@@ -45,6 +45,13 @@ export class ConsultarresultadosPage implements OnInit {
     { headerName: 'Opinion', field: 'opinion', sortable: true, filter: true },
   ];
 
+  columnDefsMobile = [   
+    { headerName: 'Tarea', field: 'titulo', sortable: true, filter: true },
+    { headerName: 'Estudiante', field: 'alumno', sortable: true, filter: true },
+    { headerName: 'Nota', field: 'nota', sortable: true, filter: true, valueParser: this.numberParser, cellStyle: this.cellStyle },
+    { headerName: 'Tiempo', field: 'tiempo', sortable: true, filter: true, valueParser: this.numberParser, cellStyle: this.cellStyle },
+  ];
+
   opinion = "";
 
   sAlumno = false;
@@ -397,6 +404,8 @@ export class ConsultarresultadosPage implements OnInit {
     }
     return valueAsNumber;
   }
+
+
 
   ngOnInit() {
     this.pruebas = JSON.parse(localStorage.getItem("pruebas")) || [];
