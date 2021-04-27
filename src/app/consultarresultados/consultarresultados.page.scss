@@ -1,6 +1,6 @@
 .red {
-  background-color: lightcoral;
-}
+    background-color: lightcoral;
+  }
 .green {
 background-color: lightgreen;
 }
@@ -9,25 +9,49 @@ background-color: lightsalmon;
 }
 
 .yellow{
-background-color: yellow;
+  background-color: yellow;
 }
 
 
 /* Movil*/  
-@media only screen and (max-width: 500px) {  
-.movil{
-    display: block;
+@media (min-width: 320px) and (max-width: 480px) {
+  .movil{
+      display: block;
+  }
+  .tablet{
+    display: none;
+
+  }
+  .ordenador{
+    display: none;
+}
+  
+} 
+
+// tablet
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .movil{
+    display: none;
+}
+.tablet{
+  display: block;
+
 }
 .ordenador{
   display: none;
 }
-
-} 
+  
+}
 
 /* Ordenador*/  
-@media only screen and (min-width: 500px) {  
-.movil{
+@media only screen and (min-width: 768px) {  
+  .movil{
     display: none;
+}
+.tablet{
+  display: none;
+
 }
 .ordenador{
   display: block;

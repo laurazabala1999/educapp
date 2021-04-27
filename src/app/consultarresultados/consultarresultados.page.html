@@ -29,6 +29,12 @@
   (selectionChanged)="onSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)">
 </ag-grid-angular>
 
+
+<ag-grid-angular *ngIf="!mensajeShow && sTabla" style="width: 100%; height: 100%;" class="ag-theme-balham tablet"
+  [rowData]="rowData" [columnDefs]="columnDefs" [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)">
+</ag-grid-angular>
+
 <ag-grid-angular *ngIf="!mensajeShow && sTabla" style="width: 100%; height: 100%;" class="ag-theme-balham movil"
   [rowData]="rowData" [columnDefs]="columnDefsMobile" [rowSelection]="rowSelection"
   (selectionChanged)="onSelectionChanged($event)" (firstDataRendered)="onFirstDataRendered($event)">
@@ -75,13 +81,35 @@
 </ion-grid>
 
 
-<div>
-  <ion-item *ngIf="opinion" class="ordenador">
+<div *ngIf="!mensajeShow">
+  <div *ngIf="opinion && sTabla" class="ordenador">
     <ion-label position="floating" style="font-weight: bold;">Opinión del estudiante sobre la prueba</ion-label>
     <ion-textarea [(ngModel)]="opinion" disabled="true"></ion-textarea>
-  </ion-item>
-  <ion-button *ngIf="show && sTabla" color="success" expand="full" (click)="felicitar()">FELICITAR</ion-button>
-  <ion-button *ngIf="show && sTabla" color="warning" expand="full" (click)="mensaje()">ENVIAR MENSAJE PERSONAL</ion-button>
+  </div>
+
+  <div *ngIf="opinion && sTabla" class="tablet">
+    <ion-label *ngIf="showComment" position="floating" style="font-weight: bold;">Opinión del estudiante sobre la prueba
+    </ion-label>
+    <ion-textarea *ngIf="showComment" [(ngModel)]="opinion" disabled="true"></ion-textarea>
+  </div>
+
+  <ion-row>
+    <ion-col class="tablet" *ngIf="opinion && sTabla">
+      <ion-button color="success" *ngIf="!showComment" expand="full" (click)="verComentario()">VER COMENTARIO
+      </ion-button>
+      <ion-button color="warning" *ngIf="showComment" expand="full" (click)="cerrarComentario()">CERRAR COMENTARIO
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button *ngIf="show && sTabla && sTabla" color="success" expand="full" (click)="felicitar()">FELICITAR</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button *ngIf="show && sTabla && sTabla" color="warning" expand="full" (click)="mensaje()">ENVIAR MENSAJE PERSONAL
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </div>
 <!-- <div *ngIf="!show && sTabla && seleccion">
   <ion-item>

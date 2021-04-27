@@ -28,7 +28,8 @@ export class CrearpruebaPage implements OnInit {
 
   respuesta = "";
 
-  temas = ["Numeros decimales", "Mínimo común múltiplo", "Operaciones con decimales"]
+  temas = ["Sumas y restas con llevadas", "Multiplicar por tres cifras", "División", "Cálculo con varias operaciones", "Números Decimales", "Sumas, restas y multiplicaciones con decimales", "Divisiones con Decimales", "Mínimo común múltiplo y máximo común divisor", "Números Primos" ,"Fracciones"]
+
   temario = "";
 
   estados = ["ABIERTA", "CERRADA"]

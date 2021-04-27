@@ -11,20 +11,32 @@ export class AnalisisPage implements OnInit {
 
   lista = true;
   detalle = false;
+  detalleTarea = false;
+  selectedTarea;
   profesor = localStorage.getItem("user");
   pruebas = JSON.parse(localStorage.getItem("pruebas")) || [];
   misPruebas = _.filter(this.pruebas, { profesor: this.profesor }) || [];
   modalData: any = {};
+  modalDataTarea: any = {};
+
   riesgos = JSON.parse(localStorage.getItem("riesgos")) || [];
+  riesgosPruebas; 
 
   columnDefs = [
-    { headerName: 'Nombre de la Prueba', field: 'titulo', sortable: true, filter: true },
-    { headerName: 'Asignatura', field: 'asignatura', sortable: true, filter: true },
-    { headerName: 'Calificación', field: 'nota', sortable: true, filter: true, valueParser: this.numberParser, cellStyle: this.cellStyle },
+    { headerName: 'Tarea', field: 'titulo', sortable: true, filter: true },
+    { headerName: 'Nota', field: 'nota', sortable: true, filter: true, valueParser: this.numberParser, cellStyle: this.cellStyle },
     { headerName: 'Tiempo', field: 'tiempo', sortable: true, filter: true, valueParser: this.numberParser, cellStyle: this.cellStyle },
   ];
 
+  
+  columnDefsTarea = [
+    { headerName: 'Estudiante', field: 'estudiante', sortable: true, filter: true },
+    { headerName: 'Opinión', field: 'opinion', sortable: true, filter: true },
+  ];
+
   rowData = [];
+  rowDataTareas = [];
+
   rowSelection = 'single';
   gridApi;
 
@@ -121,7 +133,7 @@ export class AnalisisPage implements OnInit {
           tiempo: avisos[alumno].tiempo
         }
 
-        let refuerzos = JSON.parse(localStorage.getItem("entregasRefuerzo_"+ alumno)) || [];
+        let refuerzos = JSON.parse(localStorage.getItem("entregasRefuerzo_" + alumno)) || [];
         let deficitRefuerzos = "";
         if (refuerzos) {
           let suspensos = 0;
@@ -155,6 +167,66 @@ export class AnalisisPage implements OnInit {
 
       }
     }
+
+    this.analizarOpiniones();
+
+  }
+
+  onSelectionChanged(selected) {
+    if (selected) {
+      let selectedTarea = selected.api.getSelectedRows();
+      this.selectedTarea = selectedTarea[0];
+    }
+    else{
+      this.selectedTarea = null;
+
+    }
+    this.changeDetectorRef.detectChanges();
+
+  }
+
+  analizarOpiniones() {
+    let palabrasNegativas = ["mal", "problema", "problemas", "nada", "cuesta", "no he entendido", "lioso", "difícil", "dificil", "complicado", "0", "cero", "equivocado", "confundido", "no me ha gustado", "fallar", "fallado", "fallo",
+    "MAL", "PROBLEMA", "PROBLEMAS", "NADA", "CUESTA", "NO HE ENTENDIDO", "LIOSO", "DIFICIL", "DIFÍCIL", "COMPLICADO", "CERO", "EQUIVOCADO", "CONFUNDIDO", "NO ME HA GUSTADO", "FALLAR", "FALLADO", "FALLO",
+    "Mal", "Problema", "Problemas", "Nada", "Cuesta", "No he entendido", "Lioso", "Difícil", "Dificil", "Complicado", "Cero", "Equivocado", "Confundido", "No me ha gustado", "Fallar", "Fallado", "Fallo"];
+    let pruebasRiesgo = [];
+    for (let prueba of this.pruebas) {
+      let pruebaContComentarios = 0;
+      let pruebaContNegativos = 0;
+      let entregasNegativas = [];
+      for (let entrega of prueba.entregas) {
+        if (entrega.opinion) {
+          pruebaContComentarios ++;
+          let negativo = false;
+          for (let comentario of palabrasNegativas) {
+            if (entrega.opinion.indexOf(comentario) != "-1") {
+              negativo = true;
+            }
+          }
+          if(negativo){
+            entregasNegativas.push(entrega);
+            pruebaContNegativos ++;
+          }
+        }
+      }
+
+      if(pruebaContComentarios/3 < pruebaContNegativos){
+        let pruebaRiesgo ={
+          titulo : prueba.titulo,
+          grupo: "6ºA",
+          opinionesTotales: pruebaContComentarios,
+          opinionesNegativas: pruebaContNegativos,
+          entregasNegativas: entregasNegativas,
+          mensaje: "La tarea "+ prueba.titulo + " ha recibido "+ pruebaContNegativos +" comentarios negativos de " + pruebaContComentarios +" opiniones totales realizadas."
+        }
+
+        pruebasRiesgo.push(pruebaRiesgo);
+
+      }
+    }
+    localStorage.setItem("pruebasRiesgo", JSON.stringify(pruebasRiesgo));
+    this.riesgosPruebas = pruebasRiesgo;
+    this.changeDetectorRef.detectChanges();
 
   }
 
@@ -197,7 +269,7 @@ export class AnalisisPage implements OnInit {
         tiempo: avisos[alumno].tiempo
       }
 
-      let refuerzos = JSON.parse(localStorage.getItem("entregasRefuerzo_"+ alumno)) || [];
+      let refuerzos = JSON.parse(localStorage.getItem("entregasRefuerzo_" + alumno)) || [];
       let deficitRefuerzos = "";
       if (refuerzos) {
         let suspensos = 0;
@@ -273,9 +345,36 @@ export class AnalisisPage implements OnInit {
   }
 
 
+  abrirTarea(riesgo) {
+
+    this.modalDataTarea = riesgo;
+    this.lista = false;
+    this.detalleTarea = true;
+
+    let arrayPruebasRiesgo = riesgo.entregasNegativas;
+    this.rowDataTareas = [];
+
+    for (let prueba of arrayPruebasRiesgo) {
+
+      let obj = {
+        estudiante: prueba.alumno,
+        opinion: prueba.opinion
+      }
+    
+      this.rowDataTareas.push(obj);
+       
+    }
+
+
+    this.changeDetectorRef.detectChanges();
+  }
+
+
   cerrar() {
     this.lista = true;
     this.detalle = false;
+    this.detalleTarea = false;
+
     this.changeDetectorRef.detectChanges();
   }
 

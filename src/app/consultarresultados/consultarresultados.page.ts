@@ -12,6 +12,9 @@ import { domainToASCII } from 'url';
 export class ConsultarresultadosPage implements OnInit {
 
   constructor(public changeDetectorRef: ChangeDetectorRef, private router: Router) { }
+
+  showComment = false;
+
   profesor = localStorage.getItem("user");
   pruebas;
 
@@ -45,7 +48,7 @@ export class ConsultarresultadosPage implements OnInit {
     { headerName: 'Opinion', field: 'opinion', sortable: true, filter: true },
   ];
 
-  columnDefsMobile = [   
+  columnDefsMobile = [
     { headerName: 'Tarea', field: 'titulo', sortable: true, filter: true },
     { headerName: 'Estudiante', field: 'alumno', sortable: true, filter: true },
     { headerName: 'Nota', field: 'nota', sortable: true, filter: true, valueParser: this.numberParser, cellStyle: this.cellStyle },
@@ -134,6 +137,18 @@ export class ConsultarresultadosPage implements OnInit {
 
   mensaje() {
     this.mensajeShow = true;
+    this.changeDetectorRef.detectChanges();
+
+  }
+
+  verComentario(){
+    this.showComment = true;
+    this.changeDetectorRef.detectChanges();
+
+
+  }
+  cerrarComentario(){
+    this.showComment = false;
     this.changeDetectorRef.detectChanges();
 
   }
