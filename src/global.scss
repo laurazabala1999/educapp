@@ -46,3 +46,8 @@
 .item-interactive-disabled.sc-ion-label-md-h:not(.item-multiple-inputs), .item-interactive-disabled:not(.item-multiple-inputs) .sc-ion-label-md-h{
     opacity: 1 !important;
 }
+
+.alert-wrapper.sc-ion-alert-md{
+    max-width: 90% !important;
+    width: 500px !important;
+}

@@ -1,0 +1,183 @@
+
+[
+{
+    "abierta": "ABIERTA",
+    "asignatura": "MATEMÁTICAS",
+    "entregas": [],
+    "grupos": ["6ºA"],
+    "id": "SUMA Y RESTA CON LLEVADAS COMPLETAR_DEFAULT",
+    "mediaNota": 0,
+    "mediaTiempo": 0,
+    "preguntas": [
+        {
+            "pregunta": "¿CUÁNTO ES LA SUMA DE 123 + 29?",
+            "correcta": "152",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA RESTA DE 24 - 12?",
+            "correcta": "12",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA SUMA DE 28 + 39?",
+            "correcta": "67",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA SUMA DE 88 + 19?",
+            "correcta": "107",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA RESTA DE 19 - 11?",
+            "correcta": "8",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA SUMA DE 111 + 11?",
+            "correcta": "122",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA SUMA DE 56 + 99?",
+            "correcta": "155",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA RESTA DE 45 - 6?",
+            "correcta": "39",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA RESTA DE 154 - 45?",
+            "correcta": "109",
+            "tiempoEstimado": 20
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES LA SUMA DE 23 + 9?",
+            "correcta": "32",
+            "tiempoEstimado": 20
+
+        }
+        
+    ],
+    "profesor": "LAURA",
+    "temario": "Sumas y restas con llevadas",
+    "tiempoEstimado": 200,
+    "tipo": "COMPLETAR",
+    "titulo": "SUMAS Y RESTAS CON LLEVADAS COMPLETAR"
+},
+
+
+
+{
+    "abierta": "ABIERTA",
+    "asignatura": "MATEMÁTICAS",
+    "entregas": [],
+    "grupos": ["6ºA"],
+    "id": "MULTIPLICAR POR TRES CIFRAS COMPLETAR_DEFAULT",
+    "mediaNota": 0,
+    "mediaTiempo": 0,
+    "preguntas": [
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 123 X 290?",
+            "correcta": "35670",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 240 X 120?",
+            "correcta": "28800",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 280 X 390?",
+            "correcta": "109200",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 880 X 190?",
+            "correcta": "167200",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 190 X 110?",
+            "correcta": "20900",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 111 X 110?",
+            "correcta": "12210",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 560 X 990?",
+            "correcta": "554400",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 450 X 600?",
+            "correcta": "270000",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 154 X 450?",
+            "correcta": "69300",
+            "tiempoEstimado": 100
+
+        }, 
+        {
+            "pregunta": "¿CUÁNTO ES EL RESULTADO DE LA MULTIPLICACIÓN DE 230 X 900?",
+            "correcta": "207000",
+            "tiempoEstimado": 100
+
+        }
+        
+    ],
+    "profesor": "LAURA",
+    "temario": "Multiplicar por tres cifras",
+    "tiempoEstimado": 1000,
+    "tipo": "COMPLETAR",
+    "titulo": "MULTIPLICAR POR TRES CIFRAS COMPLETAR"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]

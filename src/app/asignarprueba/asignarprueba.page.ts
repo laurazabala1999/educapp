@@ -34,7 +34,11 @@ export class AsignarpruebaPage implements OnInit {
   constructor(public changeDetectorRef: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit() {
-    
+    this.pruebas = JSON.parse(localStorage.getItem("pruebas")) || [];
+    this.rowData  = _.filter(this.pruebas, {profesor: this.profesor}) || [];
+
+    this.changeDetectorRef.detectChanges();
+
   }
 
 
@@ -95,7 +99,7 @@ export class AsignarpruebaPage implements OnInit {
       localStorage.setItem("pruebas", JSON.stringify(this.pruebas));
       alert("Tarea Asignada Correctamente");
       this.gridApi.redrawRows();
-      this.rowData = this.pruebas;
+      this.rowData  = _.filter(this.pruebas, {profesor: this.profesor}) || [];
       this.changeDetectorRef.detectChanges();
 
     }
@@ -123,7 +127,7 @@ export class AsignarpruebaPage implements OnInit {
       localStorage.setItem("pruebas", JSON.stringify(this.pruebas));
       alert("Tarea Eliminada Correctamente");
       this.gridApi.redrawRows();
-      this.rowData = this.pruebas;
+      this.rowData  = _.filter(this.pruebas, {profesor: this.profesor}) || [];
 
       let alumnos = JSON.parse(localStorage.getItem("alumnos"));
       for(let item of alumnos){
@@ -155,7 +159,7 @@ export class AsignarpruebaPage implements OnInit {
       localStorage.setItem("pruebas", JSON.stringify(this.pruebas));
       alert("Tarea Finalizada Correctamente");
       this.gridApi.redrawRows();
-      this.rowData = this.pruebas;
+      this.rowData  = _.filter(this.pruebas, {profesor: this.profesor}) || [];
 
       this.abierto = true;
       this.cerrado = true;
@@ -180,7 +184,7 @@ export class AsignarpruebaPage implements OnInit {
       localStorage.setItem("pruebas", JSON.stringify(this.pruebas));
       alert("Tarea Cerrada Correctamente");
       this.gridApi.redrawRows();
-      this.rowData = this.pruebas;
+      this.rowData  = _.filter(this.pruebas, {profesor: this.profesor}) || [];
 
       this.abierto = true;
       this.cerrado = false;
@@ -205,7 +209,7 @@ export class AsignarpruebaPage implements OnInit {
       localStorage.setItem("pruebas", JSON.stringify(this.pruebas));
       alert("Tarea Abierta Correctamente");
       this.gridApi.redrawRows();
-      this.rowData = this.pruebas;
+      this.rowData  = _.filter(this.pruebas, {profesor: this.profesor}) || [];
 
       this.abierto = false;
       this.cerrado = true;
